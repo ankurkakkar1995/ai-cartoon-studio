@@ -1,61 +1,85 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#111827">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111827">
 <title>AI Cartoon Studio</title>
 <style>
-:root{color-scheme:dark;--bg:#0b1020;--panel:#151d31;--panel2:#1c2740;--text:#f4f6fb;--muted:#aab5ca;--line:#2d3a55;--accent:#a78bfa;--green:#6ee7b7;--red:#fda4af}
+:root{color-scheme:dark;--bg:#0b1020;--panel:#151d31;--text:#f4f6fb;--muted:#aab5ca;--line:#2d3a55;--accent:#a78bfa;--green:#6ee7b7;--red:#fda4af}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#111a31,#090e1b 65%);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
-header{padding:22px 18px 16px;max-width:900px;margin:auto}header .eyebrow{color:var(--green);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}h1{font-size:clamp(26px,6vw,38px);line-height:1.12;margin:7px 0}p{color:var(--muted);margin:6px 0}
-main{max-width:900px;margin:auto;padding:0 14px 48px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:8px 0 18px}.step{border:1px solid var(--line);border-radius:12px;padding:9px 6px;text-align:center;color:var(--muted);font-size:11px}.step b{display:block;font-size:16px;color:var(--text)}.step.active{border-color:var(--accent);background:#a78bfa18}.step.done{border-color:#28785e;color:var(--green)}
-.card{background:#151d31eF;border:1px solid var(--line);border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 12px 32px #0002}.card h2{font-size:19px;margin:0 0 5px}.hint{font-size:13px;color:var(--muted);margin-bottom:13px}
-label{display:block;font-size:13px;font-weight:650;margin:13px 0 6px}textarea,input,select{width:100%;border:1px solid #3a4968;border-radius:11px;background:#0d1527;color:var(--text);padding:12px;font:inherit}textarea{min-height:150px;resize:vertical}input[type=file]{font-size:13px}button{border:0;border-radius:11px;padding:12px 15px;background:var(--accent);color:#171329;font-weight:750;font-size:14px;cursor:pointer}button.secondary{background:#273550;color:var(--text);border:1px solid #40506e}button:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.status{border-radius:10px;padding:10px 12px;background:#0e2630;color:var(--green);font-size:13px;margin-top:12px}.warning{background:#352719;color:#fcd69a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px;margin-top:14px}.character,.scene{background:#0e172a;border:1px solid var(--line);border-radius:14px;padding:13px}.avatar{height:100px;border-radius:10px;background:linear-gradient(135deg,#3b426c,#875c8c);display:grid;place-items:center;font-size:38px;margin-bottom:10px}.character h3,.scene h3{margin:0 0 4px;font-size:16px}.character p,.scene p{font-size:13px}.tag{display:inline-block;border:1px solid #40506e;border-radius:99px;padding:3px 8px;font-size:11px;color:var(--muted);margin:5px 4px 0 0}.approval{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;color:var(--green)}.approval input{width:auto}.locked{opacity:.5}.small{font-size:12px;color:var(--muted)}footer{text-align:center;padding:18px;color:var(--muted);font-size:12px}
+header{padding:22px 18px 16px;max-width:1000px;margin:auto}header .eyebrow{color:var(--green);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}h1{font-size:clamp(26px,6vw,38px);line-height:1.12;margin:7px 0}p{color:var(--muted);margin:6px 0}
+main{max-width:1000px;margin:auto;padding:0 14px 48px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:8px 0 18px}.step{border:1px solid var(--line);border-radius:12px;padding:9px 6px;text-align:center;color:var(--muted);font-size:11px}.step b{display:block;font-size:16px;color:var(--text)}.step.active{border-color:var(--accent);background:#a78bfa18}.step.done{border-color:#28785e;color:var(--green)}
+.card{background:#151d31ef;border:1px solid var(--line);border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 12px 32px #0002}.card h2{font-size:19px;margin:0 0 5px}.hint{font-size:13px;color:var(--muted);margin-bottom:13px}
+label{display:block;font-size:13px;font-weight:650;margin:13px 0 6px}textarea,input,select{width:100%;border:1px solid #3a4968;border-radius:11px;background:#0d1527;color:var(--text);padding:12px;font:inherit}textarea{min-height:130px;resize:vertical}input[type=file]{font-size:13px}input[type=checkbox]{width:auto;accent-color:#a78bfa}button{border:0;border-radius:11px;padding:12px 15px;background:var(--accent);color:#171329;font-weight:750;font-size:14px;cursor:pointer}button.secondary{background:#273550;color:var(--text);border:1px solid #40506e}button:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.status{border-radius:10px;padding:10px 12px;background:#0e2630;color:var(--green);font-size:13px;margin-top:12px;white-space:pre-wrap}.warning{background:#352719;color:#fcd69a}.error{background:#3b1d2a;color:#fecdd3}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:11px;margin-top:14px}.character,.scene{background:#0e172a;border:1px solid var(--line);border-radius:14px;padding:13px;min-width:0}.character h3,.scene h3{margin:0 0 4px;font-size:16px}.character p,.scene p{font-size:13px}.tag{display:inline-block;border:1px solid #40506e;border-radius:99px;padding:3px 8px;font-size:11px;color:var(--muted);margin:5px 4px 0 0}.approval{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;color:var(--green)}.locked{opacity:.55}.small{font-size:12px;color:var(--muted)}.art{width:100%;aspect-ratio:1/1;object-fit:contain;background:#080d18;border:1px solid var(--line);border-radius:10px;margin:8px 0}.progress{height:7px;background:#273550;border-radius:20px;overflow:hidden;margin-top:10px}.progress span{display:block;height:100%;width:0;background:var(--green);transition:width .3s}.muted{color:var(--muted)}footer{text-align:center;padding:18px;color:var(--muted);font-size:12px}
 @media(min-width:700px){header{padding-top:34px}main{padding-left:20px;padding-right:20px}.card{padding:22px}}
-</style>
-</head>
+</style></head>
 <body>
-<header><div class="eyebrow">Your story production workspace</div><h1>🎬 AI Cartoon Studio</h1><p>Turn a story into an approved character plan and scene outline. Your creative decisions stay in your hands.</p></header>
+<header><div class="eyebrow">Your story production workspace</div><h1>🎬 AI Cartoon Studio</h1><p>Generate cartoon character and scene artwork, approve every image, then prepare your production plan.</p></header>
 <main>
 <div class="steps" id="steps"><div class="step active"><b>1</b>Script</div><div class="step"><b>2</b>Characters</div><div class="step"><b>3</b>Scenes</div><div class="step"><b>4</b>Export</div></div>
-<section class="card">
-<h2>1. Add your story</h2><div class="hint">Paste your story or upload a plain-text file. Nothing is sent to an AI service in this prototype.</div>
+<section class="card"><h2>1. Add your story</h2><div class="hint">Paste your story or upload a plain-text file. Script processing happens in this browser.</div>
 <label for="storyFile">Upload script (.txt or .md)</label><input id="storyFile" type="file" accept=".txt,.md,text/plain">
 <label for="story">Story script</label><textarea id="story" placeholder="Paste your Hindi or English story here..."></textarea>
-<label for="names">Main character names (comma-separated)</label><input id="names" placeholder="e.g. Meera, Kabir, The Wise Owl">
-<div class="actions"><button id="makeCharacters">Create character plan</button><button class="secondary" id="saveDraft">Save draft on this phone</button></div>
-<div id="scriptStatus" aria-live="polite"></div>
-</section>
-<section class="card" id="characterSection">
-<h2>2. Character review</h2><div class="hint">Review the proposed character descriptions. Real AI character artwork will be connected in a later stage.</div>
-<div id="characters" class="grid"><p class="small">Add a story and character names to create your character plan.</p></div>
-<label class="approval"><input type="checkbox" id="approveCharacters" disabled> I approve this character plan and want to continue.</label>
-<div class="actions"><button id="makeScenes" disabled>Continue to scenes</button></div>
-<div id="characterStatus" aria-live="polite"></div>
-</section>
-<section class="card locked" id="sceneSection">
-<h2>3. Scene outline</h2><div class="hint">Scenes remain locked until you approve the character plan.</div>
-<div id="scenes" class="grid"><p class="small">Approve characters to unlock scene planning.</p></div>
-<label class="approval"><input type="checkbox" id="approveScenes" disabled> I approve this scene outline.</label>
-<div class="actions"><button id="export" disabled>Export project plan (JSON)</button></div>
-<div id="sceneStatus" aria-live="polite"></div>
-</section>
-<section class="card"><h2>What this version does—and doesn't do</h2><p>✅ Script entry and text-file upload</p><p>✅ Character plan and explicit approval gate</p><p>✅ Scene outline and second approval gate</p><p>✅ Save a draft in this browser and export a project JSON</p><p>⏳ AI-generated character images, animation, voice, music and MP4 rendering are not connected yet. We'll add these only after choosing services and checking their free limits and costs.</p></section>
-</main>
-<footer>AI Cartoon Studio • Prototype v0.1 • Drafts are stored locally in this browser</footer>
+<label for="names">Main character names (comma-separated)</label><input id="names" placeholder="e.g. Mohan, Parrot">
+<div class="actions"><button id="makeCharacters">Create character plan & generate images</button><button class="secondary" id="saveDraft">Save draft on this phone</button></div><div id="scriptStatus" aria-live="polite"></div>
+<label class="approval"><input type="checkbox" id="privacyConsent"> I understand that prompts are sent to the community-run AI Horde service to request image generation.</label>
+<p class="small">Image generation uses the anonymous public AI Horde service. It is community-powered, may be slow or unavailable, and has no guaranteed free capacity or completion time. Do not submit private or sensitive story content.</p></section>
+<section class="card" id="characterSection"><h2>2. Character image review</h2><div class="hint">Each character image is generated automatically. Approve each image individually before scenes can be created.</div>
+<div id="characters" class="grid"><p class="small">Add a story and character names to begin.</p></div><div id="characterStatus" aria-live="polite"></div><div class="actions"><button id="makeScenes" disabled>Generate scene images</button></div></section>
+<section class="card locked" id="sceneSection"><h2>3. Scene image review</h2><div class="hint">Every scene image needs your individual approval before export.</div><div id="scenes" class="grid"><p class="small">Approve all character images to unlock scenes.</p></div><div id="sceneStatus" aria-live="polite"></div><div class="actions"><button id="export" disabled>Export approved project plan (JSON)</button></div></section>
+<section class="card"><h2>4. About this build</h2><p>✅ Automatic character image requests</p><p>✅ Automatic scene image requests</p><p>✅ Individual approval gates for every image</p><p>✅ Save script locally and export approved project plan</p><p>⏳ This version does not yet create animated video, voice, music or MP4. Those require separate free/open-source processing components; no paid service is integrated.</p></section>
+</main><footer>AI Cartoon Studio • Image workflow v0.2 • Images are generated by community volunteers through AI Horde</footer>
 <script>
-const $=id=>document.getElementById(id);let characters=[];let scenes=[];
-$('storyFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){$('scriptStatus').textContent='Please choose a text file smaller than 2 MB.';return;}$('story').value=await f.text();$('scriptStatus').textContent='Script loaded: '+f.name;});
+const $=id=>document.getElementById(id);let characters=[],scenes=[],busy=false;
+const API='https://aihorde.net/api/v2';
+$('storyFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){message('scriptStatus','Please choose a text file smaller than 2 MB.','error');return;}$('story').value=await f.text();message('scriptStatus','Script loaded: '+f.name);});
+function message(id,text,kind='ok'){const el=$(id);el.className='status '+(kind==='error'?'error':kind==='warning'?'warning':'');el.textContent=text;}
 function updateSteps(n){document.querySelectorAll('.step').forEach((el,i)=>{el.classList.toggle('active',i===n-1);el.classList.toggle('done',i<n-1);});}
-function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-$('makeCharacters').onclick=()=>{const story=$('story').value.trim();const names=$('names').value.split(',').map(x=>x.trim()).filter(Boolean);if(!story){$('scriptStatus').innerHTML='<div class="status warning">Please paste or upload your story first.</div>';return;}if(!names.length){$('scriptStatus').innerHTML='<div class="status warning">Please enter at least one character name.</div>';return;}characters=names.map((name,i)=>({name,role:i===0?'Main character':i===1?'Supporting character':'Additional character',visual:'To be decided with your approval',personality:'To be defined from the story',approved:false}));$('characters').innerHTML=characters.map((c,i)=>'<article class="character"><div class="avatar">🎭</div><h3>'+escapeHtml(c.name)+'</h3><span class="tag">'+c.role+'</span><p><b>Visual design:</b> '+c.visual+'</p><p><b>Personality:</b> '+c.personality+'</p></article>').join('');$('approveCharacters').disabled=false;$('approveCharacters').checked=false;$('makeScenes').disabled=true;$('characterStatus').innerHTML='<div class="status warning">Review the character list and tick the approval box to unlock scene planning.</div>';$('sceneSection').classList.add('locked');$('approveScenes').disabled=true;$('approveScenes').checked=false;$('export').disabled=true;updateSteps(2);};
-$('approveCharacters').onchange=e=>{$('makeScenes').disabled=!e.target.checked;$('characterStatus').textContent=e.target.checked?'Character plan approved. You can now continue.':'Approval withdrawn. Scene planning is locked.';};
-$('makeScenes').onclick=()=>{if(!$('approveCharacters').checked)return;const paragraphs=$('story').value.split(/\n+|(?<=[.!?।])\s+/).map(x=>x.trim()).filter(x=>x.length>12);const chunks=[];for(let i=0;i<paragraphs.length;i+=2)chunks.push(paragraphs.slice(i,i+2).join(' '));scenes=(chunks.length?chunks:['Opening scene: establish the setting and introduce the characters.']).map((description,i)=>({number:i+1,title:'Scene '+(i+1),description,approved:false}));$('scenes').innerHTML=scenes.map(s=>'<article class="scene"><span class="tag">Scene '+s.number+'</span><h3>'+s.title+'</h3><p>'+escapeHtml(s.description)+'</p></article>').join('');$('sceneSection').classList.remove('locked');$('approveScenes').disabled=false;$('approveScenes').checked=false;$('export').disabled=true;$('sceneStatus').innerHTML='<div class="status warning">Review the outline. This is a basic text-based draft, not an AI-generated storyboard.</div>';updateSteps(3);};
-$('approveScenes').onchange=e=>{$('export').disabled=!e.target.checked;$('sceneStatus').textContent=e.target.checked?'Scene outline approved. You can export the project plan.':'Scene approval withdrawn.';};
-function projectData(){return {project:'AI Cartoon Studio',version:'0.1',story:$('story').value,characters,scenes,approvals:{characters:$('approveCharacters').checked,scenes:$('approveScenes').checked},note:'Prototype plan only. No AI images, audio or video have been generated.'};}
-$('saveDraft').onclick=()=>{try{localStorage.setItem('ai-cartoon-studio-draft',JSON.stringify({story:$('story').value,names:$('names').value}));$('scriptStatus').innerHTML='<div class="status">Draft saved in this browser on this phone.</div>';}catch(e){$('scriptStatus').textContent='Could not save draft in this browser.';}};
-try{const d=JSON.parse(localStorage.getItem('ai-cartoon-studio-draft')||'null');if(d){$('story').value=d.story||'';$('names').value=d.names||'';$('scriptStatus').textContent='A saved draft was restored from this browser.';}}catch(e){}
-$('export').onclick=()=>{if(!$('approveCharacters').checked||!$('approveScenes').checked)return;const blob=new Blob([JSON.stringify(projectData(),null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='cartoon-project-plan.json';a.click();URL.revokeObjectURL(url);updateSteps(4);$('sceneStatus').textContent='Project plan exported. This is not a rendered MP4 video.';};
-</script>
-</body></html>
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function makePrompt(kind,name,description){return 'Create one polished 2D animated family-friendly Indian storybook cartoon illustration. '+kind+'. Subject: '+name+'. Story context: '+description.slice(0,700)+'. Bright appealing colors, expressive face, clean professional animation character design, consistent visual identity, full subject visible, attractive detailed background, cinematic composition, high quality digital illustration. No text, no letters, no watermark.';}
+async function requestImage(prompt){
+ const res=await fetch(API+'/generate/async',{method:'POST',headers:{'Content-Type':'application/json','apikey':'0000000000','Client-Agent':'ankurkakkar1995:AI-Cartoon-Studio:0.2'},body:JSON.stringify({prompt,params:{width:512,height:512,steps:20,n:1,cfg_scale:7,sampler_name:'k_euler'},nsfw:false,censor_nsfw:true})});
+ if(!res.ok){let t=await res.text();throw new Error('Image service rejected request ('+res.status+'): '+t.slice(0,220));}
+ const data=await res.json();if(!data.id)throw new Error('Image service did not return a request ID.');return data.id;
+}
+async function waitImage(id,onProgress){
+ const started=Date.now();while(Date.now()-started<12*60*1000){
+  await new Promise(r=>setTimeout(r,4000));
+  const res=await fetch(API+'/generate/check/'+encodeURIComponent(id),{headers:{'Client-Agent':'ankurkakkar1995:AI-Cartoon-Studio:0.2'}});
+  if(!res.ok)throw new Error('Could not check image status ('+res.status+').');
+  const d=await res.json();onProgress(d);
+  if(d.faulted)throw new Error('The community image worker reported a failed job.');
+  if(d.done){
+   const full=await fetch(API+'/generate/status/'+encodeURIComponent(id),{headers:{'Client-Agent':'ankurkakkar1995:AI-Cartoon-Studio:0.2'}});
+   if(!full.ok)throw new Error('Image completed but result retrieval failed.');
+   const result=await full.json();const url=result.generations&&result.generations[0]&&result.generations[0].img;
+   if(!url)throw new Error('No image URL was returned by the service.');return url;
+  }
+ }
+ throw new Error('This image is taking too long. Please try again later.');
+}
+function renderCharacters(){
+ $('characters').innerHTML=characters.map((c,i)=>'<article class="character"><h3>'+esc(c.name)+'</h3><span class="tag">Character '+(i+1)+'</span><p>'+esc(c.description)+'</p>'+ (c.image?'<img class="art" src="'+esc(c.image)+'" alt="Generated character '+esc(c.name)+'">':'<div class="art" style="display:grid;place-items:center;color:#aab5ca">🎨 Image pending</div>')+'<div class="small" id="charState'+i+'">'+esc(c.state||'Waiting')+'</div><label class="approval"><input type="checkbox" data-char="'+i+'" '+(c.approved?'checked':'')+' '+(!c.image?'disabled':'')+'> I approve this character image</label></article>').join('');
+ document.querySelectorAll('[data-char]').forEach(el=>el.onchange=()=>{characters[+el.dataset.char].approved=el.checked;syncCharacterGate();});
+}
+function syncCharacterGate(){const all=characters.length>0&&characters.every(c=>c.image&&c.approved);$('makeScenes').disabled=!all||busy; if(all)message('characterStatus','All character images approved. You can now generate scene images.');}
+async function generateForCharacter(c,i){c.state='Requesting image...';renderCharacters();const id=await requestImage(makePrompt('Character portrait and full-body turnaround design',c.name,c.description+' Story: '+$('story').value));c.state='Waiting for a volunteer image worker...';renderCharacters();const url=await waitImage(id,d=>{c.state=d.waiting?'Queued ('+d.waiting+' waiting)':'Generating...';const el=$('charState'+i);if(el)el.textContent=c.state;});c.image=url;c.state='Image ready — approval required';renderCharacters();}
+$('makeCharacters').onclick=async()=>{if(busy)return;const story=$('story').value.trim(),names=$('names').value.split(',').map(x=>x.trim()).filter(Boolean);if(!story){message('scriptStatus','Please paste or upload your story first.','error');return;}if(!names.length){message('scriptStatus','Please enter at least one character name.','error');return;}if(!$('privacyConsent').checked){message('scriptStatus','Please acknowledge the community image service before sending prompts.','warning');return;}characters=names.map((name,i)=>({name,description:(i===0?'Main character. ':'Supporting character. ')+'Create a distinctive, memorable design suitable for repeated appearances in this story.',approved:false,image:null,state:'Waiting'}));scenes=[];renderCharacters();$('makeScenes').disabled=true;busy=true;$('makeCharacters').disabled=true;updateSteps(2);
+ try{for(let i=0;i<characters.length;i++){message('characterStatus','Generating character '+(i+1)+' of '+characters.length+': '+characters[i].name+'. Keep this page open.');await generateForCharacter(characters[i],i);}message('characterStatus','All character images generated. Please approve each image individually.');}
+ catch(e){message('characterStatus','Image generation stopped: '+e.message+'. You can retry after checking service availability.','error');}
+ finally{busy=false;$('makeCharacters').disabled=false;syncCharacterGate();}
+};
+function splitScenes(text){let p=text.split(/\n+|(?<=[.!?।])\s+/).map(x=>x.trim()).filter(x=>x.length>15);let out=[];for(let i=0;i<p.length;i+=2)out.push(p.slice(i,i+2).join(' '));return (out.length?out:[text]).slice(0,12);}
+function renderScenes(){$('scenes').innerHTML=scenes.map((s,i)=>'<article class="scene"><h3>Scene '+(i+1)+'</h3><p>'+esc(s.description)+'</p>'+(s.image?'<img class="art" src="'+esc(s.image)+'" alt="Generated scene '+(i+1)+'">':'<div class="art" style="display:grid;place-items:center;color:#aab5ca">🎬 Image pending</div>')+'<div class="small" id="sceneState'+i+'">'+esc(s.state||'Waiting')+'</div><label class="approval"><input type="checkbox" data-scene="'+i+'" '+(s.approved?'checked':'')+' '+(!s.image?'disabled':'')+'> I approve this scene image</label></article>').join('');
+ document.querySelectorAll('[data-scene]').forEach(el=>el.onchange=()=>{scenes[+el.dataset.scene].approved=el.checked;syncSceneGate();});}
+function syncSceneGate(){const all=scenes.length>0&&scenes.every(s=>s.image&&s.approved);$('export').disabled=!all||busy;if(all)message('sceneStatus','All scene images approved. You can export your project plan.');}
+$('makeScenes').onclick=async()=>{if(busy||!characters.every(c=>c.image&&c.approved))return;busy=true;$('makeScenes').disabled=true;$('sceneSection').classList.remove('locked');scenes=splitScenes($('story').value).map((description,i)=>({description,image:null,approved:false,state:'Waiting'}));renderScenes();updateSteps(3);
+ try{for(let i=0;i<scenes.length;i++){const s=scenes[i];message('sceneStatus','Generating scene '+(i+1)+' of '+scenes.length+'. Keep this page open.');s.state='Requesting image...';renderScenes();const cast=characters.map(c=>c.name).join(', ');const prompt=makePrompt('A story scene illustration featuring the established characters '+cast,s.description,s.description+' Maintain the same character designs and clothing as the approved character references.');const id=await requestImage(prompt);s.state='Waiting for a volunteer image worker...';renderScenes();const url=await waitImage(id,d=>{s.state=d.waiting?'Queued ('+d.waiting+' waiting)':'Generating...';const el=$('sceneState'+i);if(el)el.textContent=s.state;});s.image=url;s.state='Image ready — approval required';renderScenes();}
+ message('sceneStatus','All scene images generated. Please approve each image individually.');}
+ catch(e){message('sceneStatus','Scene generation stopped: '+e.message+'. You can retry by starting the scene generation again.','error');}
+ finally{busy=false;syncSceneGate();}
+};
+function projectData(){return {project:'AI Cartoon Studio',version:'0.2',story:$('story').value,characters,scenes,approvals:{characters:characters.every(c=>c.approved),scenes:scenes.every(s=>s.approved)},imageProvider:'AI Horde community service',note:'Approved image URLs are included. Keep copies of images you want to retain; remote URLs may not be permanent.'};}
+$('saveDraft').onclick=()=>{try{localStorage.setItem('ai-cartoon-studio-draft',JSON.stringify({story:$('story').value,names:$('names').value}));message('scriptStatus','Draft saved in this browser on this device.');}catch(e){message('scriptStatus','Could not save draft in this browser.','error');}};
+try{const d=JSON.parse(localStorage.getItem('ai-cartoon-studio-draft')||'null');if(d){$('story').value=d.story||'';$('names').value=d.names||'';message('scriptStatus','A saved script draft was restored from this browser.');}}catch(e){}
+$('export').onclick=()=>{if(!scenes.length||!characters.every(c=>c.approved)||!scenes.every(s=>s.approved))return;const blob=new Blob([JSON.stringify(projectData(),null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='cartoon-project-approved-images.json';a.click();URL.revokeObjectURL(url);updateSteps(4);message('sceneStatus','Approved project plan exported. This is not yet a rendered MP4 video.');};
+</script></body></html>
